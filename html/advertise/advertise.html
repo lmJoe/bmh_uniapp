@@ -1,0 +1,20 @@
+
+<script>
+document.addEventListener('UniAppJSBridgeReady', function() {
+	document.querySelector('.btn').addEventListener('click', function(e) {
+		if (e.isTrusted) {
+			plus.webview.currentWebview().close();
+		}
+	});
+	
+	// 广告点击跳转app内页
+	document.querySelector('.enter').addEventListener('click', function(e) {
+		if (e.isTrusted) {
+			plus.webview.currentWebview().close();
+			uni.navigateTo({
+				url: '/pages/tabBar/Home/index',
+			});
+		}
+	});
+});
+</script>

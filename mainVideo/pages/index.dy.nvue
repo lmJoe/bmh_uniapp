@@ -1,0 +1,469 @@
+<!-- <template>
+	<view>
+		<view class="uni-padding-wrap uni-common-mt">
+			<view class="videoItem" v-for="(item,index) in smallVideoList" :key="index">
+				<smallVideo-item :data="item"></smallVideo-item>
+			</view>
+			<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
+		</view>
+	</view>
+</template>
+<script>
+	import {getVideoList} from '@/utils/request.js'
+	import {changeHourMinutestr} from '@/utils/untis.js'
+	import {userStore} from '@/stores/counter'
+	import smallVideoItem from '@/components/smallVideo.vue'
+	const userStoreTemp = userStore();
+	export default {
+		components: {
+		    smallVideoItem,
+		},
+		data() {
+			return {
+				smallVideoList:[],
+				loadMoreText: "加载中...",
+				showLoadMore: false,
+				max: 0,
+				channelList:[],
+				pageIndex:1,
+				pageSize:10
+			}
+		},
+		mounted() {
+			this.getVideoList();
+		},
+		onUnload() {
+			this.max = 0,
+			this.smallVideoList = [],
+			this.loadMoreText = "加载更多",
+			this.showLoadMore = false;
+		},
+		onReachBottom() {
+			console.log("onReachBottom");
+			if (this.max > 40) {
+				this.loadMoreText = "没有更多数据了!"
+				return;
+			}
+			this.showLoadMore = true;
+			setTimeout(() => {
+				this.setListData();
+			}, 300);
+		},
+		onPullDownRefresh() {
+			console.log('onPullDownRefresh');
+			this.getVideoList();
+		},
+		methods: {
+			getVideoList(){
+				getVideoList(this.pageIndex,this.pageSize,'53ff9daa-a783-4da3-b8c0-587bae0c77ad',(response) => {
+					if(response.code==1){
+						let videoData = response.data;
+						for (let i in videoData) {
+							videoData[i].Duration = changeHourMinutestr(videoData[i].Duration);
+							videoData[i].CoverImgs = videoData[i].CoverImgs.replace('baomihua','pomoho')
+							videoData[i].HeadImg = videoData[i].HeadImg.replace('baomihua','pomoho')
+						}
+						this.smallVideoList = videoData;
+						this.smallVideoList = this.smallVideoList.concat(videoData);
+						uni.stopPullDownRefresh();
+						console.log("this.smallVideoList",this.smallVideoList)
+					}
+				})
+			},
+			setListData() {
+				setTimeout(() => {
+					this.pageIndex = this.pageIndex + 1;
+				    this.getVideoList();
+				}, 500)
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	/deep/ .uni-page-body,html,body{
+		/* height: 100%;  */
+	} 
+	.uni-padding-wrap{
+		padding:0;
+		margin:0;
+		display: flex;
+		/* 主轴方向为垂直方向,起点在上方 */
+		flex-direction: column;	
+		width: 100%;
+		height: 100vh;
+	}
+	.videoItem{
+		width:100%;
+		height:100%;
+	}
+	 
+</style> -->
+
+
+ <template>
+	 <view class="ua__tabcnt-recommends">
+		<swiper class="ua__vdplayer-swiper flex1 uni-padding-wrap savepadding " :current="currentVideo" vertical @change="handleSwipeVertical">
+			 <swiper-item class="videoItem" v-for="(item, index) in videoList" :key="index">
+				 <!-- 视频模块 -->
+				 <view class="ua__vdplayer-video flex1">
+					 <video class="vdplayer" :id="'vdplayer' + index" :ref="'vdplayer' + index" 
+						 :src="item.Link"
+						 :controls="false" :loop="true" :show-center-play-btn="false"
+						 :autoplay="index == currentVideo"
+						 @play="isPlaying=true" @timeupdate="handleTimeUpdate"
+						 :style="{'width': winWidth, 'height': winHeight}"
+					 >
+					 </video>
+					 <view class="ua__vdplayer-playwrap" @click="handleVideoClicked">
+						 <view v-if="!isPlaying" class="ua__vdplayer-playbtn">
+							 <image class="playerIcon" src="https://test-static01.pomoho.com/liming/images/home/playicon.png"></image>
+						 </view>
+					 </view>
+				 </view>
+				 <!-- 信息模块 -->
+				 <view class="ua__vdplayer-info flexbox flex-col">
+					 <view class="flexbox flex-row flex-alignb">
+						 <!-- //左侧信息 -->
+						 <view class="vdinfo__left flex1">
+							 <navigator url="#" class="flexbox flex-alignc flex-row">
+								 <text class="uname">@{{item.NickName}}</text>
+							 </navigator>
+							 <view class="ltitem"><text class="desc">{{item.Title}}</text></view>
+						 </view>
+						 <!-- //右侧按钮 -->
+						 <view class="vdinfo__right flexbox flex-col">
+							 <view class="ltitem uavatar flexbox flex-row">
+								 <navigator url="#" class="flexbox flex-alignc flex-row">
+									 <image class="uimg" :src="item.HeadImg" />
+								 </navigator>
+								 <view class="flexbox attentBtn" :class="{'actived': item.isFollow}" @click="handleFollow(index)">
+									 <image style="width:40rpx;height:40rpx;" :src="item.IsOriginal==1 ? attentYes : attentNo"></image>
+								 </view>
+							 </view>
+				<!-- 			 <view class="rtitem" :class="{'isliked': item.isLike}" @click="handleLiked(index)">
+								 <text class="icon iconfont">{{`\ue635`}}</text>
+								 <text class="num">{{item.likeNum+(item.isLike ? 1 : 0)}}</text>
+							</view>
+							<view class="rtitem" @click="showReplyPopup = true">
+								<text class="icon iconfont">{{`\ue632`}}</text>
+								<text class="num">{{item.replyNum}}</text>
+							 </view>
+							 <view class="rtitem" @click="showSharePopup = true">
+								 <text class="icon iconfont">{{`\ue63b`}}</text>
+								 <text class="num">{{item.shareNum}}</text>
+							</view> -->
+						 </view>
+					 </view>
+				 </view>
+			 </swiper-item>
+		 </swiper>
+		 <!-- 底部播放进度条 -->
+		 <view class="ua__vdplayer-progress"><view class="bar" :style="{'width': progressBar+'px'}"></view></view>
+	 </view>
+</template>
+ <script>
+     const app = getApp()
+	 import {getVideoList} from '@/utils/request.js'
+	 import {changeHourMinutestr,getRandomArrayElements,imgToBase64} from '@/utils/untis.js'
+	 // import videoJSON from '@/mock/videolist.js'
+	 export default {
+         data() {
+             return {
+                 // 导航栏高度
+                 customBarHeight: app.globalData.customBarH,
+                 navbarBgcolor: '#21252b',
+                 tabbarBgcolor: '#21252b',
+                 
+                 tabNavLs: [
+                     {label: '附近动态', badge: 5, lists: []},
+                     {label: '关注', lists: []},
+                     {label: '推荐', dot: true, lists: []},
+                 ],
+                 // 当前选项卡
+                 currentTab: 0,
+                 pageIndex:1,
+                 pageSize:10,
+                 // 当前视频索引
+                 currentVideo: 0,
+                 // 视频数据
+                 videoList: [],
+                 // 视频是否播放中
+                 isPlaying: false,
+                 // 点击次数
+                 clickNum: 0,
+                 // 视频播放进度条
+                 progressBar: 0,
+                 clickTimer: null,
+                 
+                 // 屏幕宽高
+                 winWidth: '',
+                 winHeight: '',
+                 
+                 popupGoodsList: [],
+                 showGoodsPopup: false,
+                 showReplyPopup: false,
+                 showSharePopup: false,
+				 videosuList:[
+					 'https://test-static01.pomoho.com/aaa.mp4',
+					 'https://test-static01.pomoho.com/videoSc/1.mp4',
+					 'https://test-static01.pomoho.com/videoSc/2.mp4',
+					 'https://test-static01.pomoho.com/videoSc/3.mp4',
+					 'https://test-static01.pomoho.com/videoSc/4.mp4',
+					 'https://test-static01.pomoho.com/videoSc/5.mp4',
+					 'https://test-static01.pomoho.com/videoSc/6.mp4',
+					 'https://test-static01.pomoho.com/videoSc/7.mp4',
+				 ],
+				 attentYes:'https://test-static01.pomoho.com/videoSc/icon1.png',
+				 attentNo:'https://test-static01.pomoho.com/videoSc/icon2.png',
+             }
+         },
+         watch: {
+             currentTab(val) {
+                 this.changeTabPanel(val)
+             }
+         },
+         computed:{
+             customBarMargin() {
+                 return `margin-top: ${this.customBarHeight}px`
+             }
+         },
+		 onLoad() {
+		 	uni.getSyste
+		 },
+         created() {
+             // 引入iconfont字体
+             // #ifdef APP-NVUE
+             const domModule = weex.requireModule('dom')
+             domModule.addRule('fontFace', {
+                 fontFamily: "nvueIcon",
+                 'src': "url('/static/fonts/iconfont.ttf')"
+             });
+             // #endif
+            let systemInfo = uni.getSystemInfoSync()
+			// px转换到rpx的比例
+			let pxToRpxScale = 750 / systemInfo.windowWidth;
+			// 状态栏的高度
+			let ktxStatusHeight = systemInfo.statusBarHeight * pxToRpxScale
+			// 导航栏的高度
+			let navigationHeight = 44 * pxToRpxScale
+			// window的宽度
+			let ktxWindowWidth = systemInfo.windowWidth * pxToRpxScale
+			// window的高度
+			let ktxWindowHeight = systemInfo.windowHeight * pxToRpxScale
+			// 屏幕的高度
+			let ktxScreentHeight = systemInfo.screenHeight * pxToRpxScale
+			// 底部tabBar的高度
+			let tabBarHeight = ktxScreentHeight - ktxStatusHeight - navigationHeight - ktxWindowHeight;
+			 
+             let wW = uni.getSystemInfoSync().windowWidth
+             let wH = uni.getSystemInfoSync().windowHeight
+             this.winWidth = `${wW}px`
+             // this.winHeight = `${wH}px`
+             this.winHeight = `${ktxWindowHeight-tabBarHeight}px`
+			 
+			 
+         },
+		 mounted(){
+			console.log("this.attentYes",this.attentYes);
+			console.log("this.attentNo",this.attentNo);
+			 this.getVideoList();
+		 },
+         methods: {
+             getVideoList(){
+             	getVideoList(this.pageIndex,this.pageSize,'53ff9daa-a783-4da3-b8c0-587bae0c77ad',(response) => {
+             		if(response.code==1){
+             			let videoData = response.data;
+						let obj = {};
+             			for (let i in videoData) {
+             				videoData[i].Duration = changeHourMinutestr(videoData[i].Duration);
+             				videoData[i].CoverImgs = videoData[i].CoverImgs.replace('baomihua','pomoho')
+             				videoData[i].HeadImg = videoData[i].HeadImg.replace('baomihua','pomoho')
+             				videoData[i].Link = getRandomArrayElements(this.videosuList,1)
+             			}
+             			this.videoList = videoData;
+             			// this.videoList = this.videoList.concat(videoData);
+             			uni.stopPullDownRefresh();
+             			console.log("this.videoList",this.videoList)
+             		}
+             	})
+             },
+			 // 播放进度变化时触发
+			 handleTimeUpdate(e) {
+			     let { currentTime, duration } = e.detail
+			     
+			     this.progressBar = parseInt((currentTime / duration).toFixed(2) * parseInt(this.winWidth))
+			 },
+             // 长按动态
+             handleDynamicMenu(e) {
+                 let points
+                 // #ifndef APP-NVUE
+                 points = [e.touches[0].clientX, e.touches[0].clientY]
+                 // #endif
+                 // #ifdef APP-NVUE
+                 points = [e.touches[0].screenX, e.touches[0].screenY]
+                 // #endif
+                 
+                 this.$refs.uapopup.open({
+                     type: 'contextmenu',
+                     follow: points,
+                     btns: [
+                         {text: '不感兴趣'},
+                         {text: '复制'},
+                         {
+                             text: '举报',
+                             style: 'color:#f00;',
+                             click: () => {
+                                 this.$refs.uapopup.close()
+                             }
+                         },
+                     ],
+                 })
+             },
+             
+             /* ++++++++++ { 视频播放模块 } ++++++++++ */
+             getVideoCtx() {
+                 // return this.$refs['vdplayer' + this.currentVideo][0]
+                 return uni.createVideoContext('vdplayer'+ this.currentVideo, this)
+             },
+             
+             // 垂直滑动视频
+             handleSwipeVertical(e) {
+                 let index = e.detail.current
+                 this.progressBar = 0
+                 this.isPlaying = false
+                 let video = this.getVideoCtx()
+                 if(!video) return
+                 video.pause()
+                 // 重新开始
+                 video.seek(0)
+                 
+                 this.currentVideo = index
+                 
+                 // 自动播放
+                 this.handlePlay()
+             },
+             
+             handlePlay() {
+                 let video = this.getVideoCtx()
+                 if(!video) return
+                 video.play()
+                 this.isPlaying = true
+             },
+             
+             handlePause() {
+                 let video = this.getVideoCtx()
+                 if(!video) return
+                 video.pause()
+                 this.isPlaying = false
+             },
+             
+             // 点击视频（单击/双击）
+             handleVideoClicked() {
+                 this.clickTimer && clearTimeout(this.clickTimer)
+                 this.clickNum++
+                 this.clickTimer = setTimeout(() => {
+                     if(this.clickNum >= 2) {
+                         console.log('你双击了')
+                     }else {
+                         console.log('你单击了')
+                         if(this.isPlaying) {
+                             this.handlePause()
+                         }else {
+                             this.handlePlay()
+                         }
+                     }
+                     this.clickNum = 0
+                 }, 250)
+             },
+			 handleFollow(index){
+				 this.videoList[index].IsOriginal = 2;
+			 }
+         }
+     }
+ </script>
+ <style scoped lang="less">
+ 	.uni-padding-wrap{
+ 		padding:0;
+ 		margin:0;
+ 		display: flex;
+ 		/* 主轴方向为垂直方向,起点在上方 */
+ 		flex-direction: column;	
+ 		width: 100%;
+ 		height: 100vh;
+ 	}
+ 	.videoItem{
+ 		width:100%;
+		.ua__vdplayer-video{
+			height:100%;
+			position:relative;
+		}
+		.ua__vdplayer-playwrap{
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			margin:auto;
+			width:100%;
+			height:100%;
+			.playerIcon{
+				width:107rpx;
+				height:107rpx;
+			}
+		}
+		.ua__vdplayer-info{
+			width:100%;
+			position:absolute;
+			bottom:0;
+			left:0;
+			.vdinfo__left{
+				background: linear-gradient(to top, rgba(0,0,0,1), rgba(255,255,255,0));
+				position:absolute;
+				bottom:0;
+				left:0;
+				width:100%;
+				color:#FFFFFF;
+				text-align:left;
+				padding-left:34rpx;
+				.uname{
+					font-size:38rpx;
+				}
+				.ltitem{
+					font-size:30rpx;
+					margin:20rpx 0;
+				}
+			}
+			.vdinfo__right{
+				position:absolute;
+				bottom:500rpx;
+				right:14rpx;
+				width:107rpx;
+				.uimg{
+					width:107rpx;
+					height:107rpx;
+					border-radius: 50%;
+				}
+				.attentBtn{
+					position:absolute;
+					bottom:-7rpx;
+					left:0;
+					right:0;
+					margin:auto;
+					width:40rpx;
+					height:40rpx;
+					z-index:100;
+					
+				}
+			}
+			
+			
+		}
+		
+ 	}
+	 // ios底部安全距离-padding
+	 .savepadding{
+		 position: fixed;  
+		 bottom: var(--window-bottom) ;  
+	 }
+ </style>

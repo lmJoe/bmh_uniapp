@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.muqian-content.data-v-35be8e74 {
+  overflow: hidden;
+  position: relative;
+}
+.muqian-content .muqain-load.data-v-35be8e74 {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+

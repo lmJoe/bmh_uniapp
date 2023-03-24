@@ -1,0 +1,175 @@
+<template>
+	<view class="videoContainer">
+		<view class="left">
+			<view class="" v-for="(item,index) in leftList" :key="index" @click="smallVideo(item)">
+				<lazyLoad class="pullImg"  :src="item.CoverImgs"  :height="item.Imgheight" mode="widthFix"></lazyLoad>
+				<!-- <image class="pullImg" v-for="(item,index) in leftList" :key="index" :src="item" alt="" mode="widthFix"></image> -->
+				<view class="msgInfo">
+					<text class="title">{{item.Title}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="right">
+			<view class="" v-for="(item,index) in rightList" :key="index" @click="smallVideo(item)">
+				<lazyLoad class="pullImg"  :src="item.CoverImgs"  :height="item.Imgheight" mode="widthFix"></lazyLoad>
+				<!-- <image class="pullImg" v-for="(item,index) in rightList" :key="index" :src="item" alt="" mode="widthFix"></image> -->
+				<view class="msgInfo">
+					<text class="title">{{item.Title}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="uni-loadmore" v-if="showLoadMore">{{loadMoreText}}</view>
+	</view>
+</template>
+
+<script>
+	import {getVideoList} from '@/utils/request.js'
+	import {changeHourMinutestr,getRandomArrayElements} from '@/utils/untis.js'
+	import lazyLoad from '@/uni_modules/muqian-lazyLoad/components/muqian-lazyLoad/muqian-lazyLoad.vue';//图片懒加载
+	export default {
+		components: {
+		    lazyLoad,
+		},
+		data(){
+			return{
+				leftList: [],
+				rightList: [],
+				// 初始化左右盒子高度
+				leftH: 0,
+				rightH: 0,
+				videoList:[],
+				loadMoreText: "加载中...",
+				showLoadMore: false,
+				max: 0,
+				pageIndex:1,
+				pageSize:10,
+				videosuList:[
+					 'https://test-static01.pomoho.com/aaa.mp4',
+					 'https://test-static01.pomoho.com/videoSc/1.mp4',
+					 'https://test-static01.pomoho.com/videoSc/2.mp4',
+					 'https://test-static01.pomoho.com/videoSc/3.mp4',
+					 'https://test-static01.pomoho.com/videoSc/4.mp4',
+					 'https://test-static01.pomoho.com/videoSc/5.mp4',
+					 'https://test-static01.pomoho.com/videoSc/6.mp4',
+					 'https://test-static01.pomoho.com/videoSc/7.mp4',
+				],
+			}
+		},
+		onLoad() {
+			this.getVideoList()
+		},
+		onUnload() {
+			this.max = 0,
+			this.videoList = [],
+			this.loadMoreText = "加载更多",
+			this.showLoadMore = false;
+		},
+		onReachBottom() {
+			console.log("onReachBottom");
+			if (this.max > 40) {
+				this.loadMoreText = "没有更多数据了!"
+				return;
+			}
+			this.showLoadMore = true;
+			setTimeout(() => {
+				this.setListData();
+			}, 300);
+		},
+		onPullDownRefresh() {
+			console.log('onPullDownRefresh');
+			this.pageIndex = 1;
+			this.leftList = [];
+			this.rightList = [];
+			this.getVideoList();
+			
+		},
+		methods: {
+			getVideoList(){
+				getVideoList(this.pageIndex,this.pageSize,'53ff9daa-a783-4da3-b8c0-587bae0c77ad',(response) => {
+					if(response.code==1){
+						let videoData = response.data;
+						let obj = {};
+						for (let i in videoData) {
+							videoData[i].Duration = changeHourMinutestr(videoData[i].Duration);
+							videoData[i].CoverImgs = videoData[i].CoverImgs.replace('baomihua','pomoho')
+							videoData[i].HeadImg = videoData[i].HeadImg.replace('baomihua','pomoho')
+							videoData[i].Link = getRandomArrayElements(this.videosuList,1);
+							// 获取图片宽高
+							
+							uni.getImageInfo({
+								src: videoData[i].CoverImgs,
+								success: (image) => {
+									// 计算图片渲染高度
+									videoData[i].Imgheight = image.height+'rpx';
+									videoData[i].Imgwidth = image.width+'rpx';
+									let showH = (50 * image.height) / image.width
+									// 判断左右盒子高度
+									if(this.leftH <= this.rightH) {
+										this.leftList.push(videoData[i])
+										this.leftH += showH
+									} else {
+										this.rightList.push(videoData[i])
+										this.rightH += showH
+									}
+								}
+							})
+						}
+						this.videoList = videoData;
+						// this.videoList = this.videoList.concat();
+						uni.stopPullDownRefresh();
+						console.log('this.videoList',this.videoList)
+						console.log('this.leftList',this.leftList)
+						console.log('this.rightList',this.rightList)
+					}
+				})
+			},
+			setListData() {
+				setTimeout(() => {
+					this.pageIndex = this.pageIndex + 1;
+				    this.getVideoList();
+				}, 500)
+			},
+			smallVideo(item){
+				uni.navigateTo({
+					url: './smallVideo/smallVideo?id='+item.PlayId,
+				})
+			}
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	.videoContainer {
+		font-size: 14rpx;
+		line-height: 24rpx;
+		display: flex;
+		flex-direction: row;
+		.right,.left{
+			width: 49%;
+			// vertical-align: top;
+			position:relative;
+			.pullImg{
+				width: 100%;
+				margin-bottom: 10rpx;
+			}
+			.msgInfo{
+				position:absolute;
+				bottom:10rpx;
+				left:22rpx;
+				width:90%;
+				color:#fff;
+				font-size:28rpx;
+				line-height:32rpx;
+				.title{
+					margin-bottom:10rpx;
+				}
+			}
+		}
+		.left{
+			margin-right: 2%;
+		}
+		
+		
+	}
+	
+</style>

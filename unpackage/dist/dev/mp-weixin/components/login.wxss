@@ -1,0 +1,42 @@
+.loginPopBox.data-v-6913c681 {
+  padding: 36rpx 38rpx;
+  margin: 0 60rpx;
+  background: #fff;
+  border-radius: 24rpx;
+}
+.loginPopBox .example-body.data-v-6913c681 {
+  display: flex;
+  flex-direction: column;
+}
+.loginPopBox .example-body .h1.data-v-6913c681 {
+  color: #222222;
+  font-size: 30rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.loginPopBox .example-body .text.data-v-6913c681 {
+  color: #222222;
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
+}
+.loginPopBox .example-body .noAgree.data-v-6913c681 {
+  background: transparent;
+  color: #999999;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  width: 400rpx;
+  height: 74rpx;
+}
+.loginPopBox .example-body .agree.data-v-6913c681 {
+  background: #FF4B45;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+  width: 400rpx;
+  height: 74rpx;
+  margin-top: 10rpx;
+}
+.loginPopBox uni-button.data-v-6913c681:after {
+  border: 0px solid rgba(0, 0, 0, 0.2);
+}
+

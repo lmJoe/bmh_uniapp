@@ -1,0 +1,107 @@
+<template>
+	<view class="messagePage">
+		<uni-list class="messageList1">
+			<uni-list-item class="item" :clickable="true" @click="goFans">
+				<template v-slot:header>
+					<view class="slot-box">
+						<image class="slot-image" style="width:96rpx;height:96rpx;" :src="fansImg" mode="widthFix"></image>
+					</view>
+				</template>
+				<template v-slot:body>
+					<view class="messageBox">
+						<text class="slot-box slot-text messageTitle">粉丝</text>
+						<text class="slot-box slot-text messageIntro">用户 小草莓 关注了你</text>
+					</view>
+				</template>
+				<template v-slot:footer>
+					<view class="rightText">
+						<text class="slot-box slot-text messagetime">刚刚</text>
+						<text class="slot-box slot-text messagenum">1</text>
+					</view>
+				</template>
+			</uni-list-item>
+			<uni-list-item class="item" :clickable="true" @click="goSystem">
+				<template v-slot:header>
+					<view class="slot-box">
+						<image class="slot-image" style="width:96rpx;height:96rpx;" :src="SystemImg" mode="widthFix"></image>
+					</view>
+				</template>
+				<template v-slot:body>
+					<view class="messageBox">
+						<text class="slot-box slot-text messageTitle">系统通知</text>
+						<text class="slot-box slot-text messageIntro">亲爱的用户，您发布的视频《我爱我家》...</text>
+					</view>
+				</template>
+				<template v-slot:footer>
+					<view class="rightText">
+						<text class="slot-box slot-text messagetime">1分钟前</text>
+						<text class="slot-box slot-text messagenum">1</text>
+					</view>
+				</template>
+			</uni-list-item>
+		</uni-list>
+		<uni-list class="messageList2">
+			<uni-list-item class="item" v-for="(item,index) in messageList">
+				<template v-slot:header>
+					<view class="slot-box">
+						<image class="slot-image" style="width:96rpx;height:96rpx;" :src="MessageImg" mode="widthFix"></image>
+					</view>
+				</template>
+				<template v-slot:body>
+					<view class="messageBox">
+						<text class="slot-box slot-text messageTitle">{{item.title}}</text>
+						<text class="slot-box slot-text messageIntro">{{item.message}}</text>
+					</view>
+				</template>
+				<template v-slot:footer>
+					<view class="rightText">
+						<text class="slot-box slot-text messagetime">{{item.time}}</text>
+					</view>
+				</template>
+			</uni-list-item>
+		</uni-list>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				fansImg:'https://test-static01.pomoho.com/liming/images/message/fans.png',
+				SystemImg:'https://test-static01.pomoho.com/liming/images/message/system.png',
+				MessageImg:'https://test-static01.pomoho.com/liming/images/message/message.png',
+				messageList:[
+					{
+						title:'互动消息',
+						message:'用户 七月安生 @你',
+						time:'5分钟',
+					},{
+						title:'互动消息',
+						message:'用户 七月安生 评论了你的视频',
+						time:'10分钟',
+					},{
+						title:'互动消息',
+						message:'用户 七月安生 回复了你的评论',
+						time:'28分钟',
+					},
+				]
+			}
+		},
+		methods: {
+			goFans(){
+				uni.navigateTo({
+				    url: '../../mainGame/pages/fans/fans?id='
+				});
+			},
+			goSystem(){
+				uni.navigateTo({
+				    url: '../../mainGame/pages/fans/fans?id='
+				});
+			}
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	@import url("./index.less");
+</style>

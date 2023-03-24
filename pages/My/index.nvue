@@ -1,0 +1,189 @@
+<template>
+	<view class="mineModule">
+		<view class="minepersonData">
+			<view class="uni-flex uni-column minepersion"  v-if="hasLogin==false" @click="loginIn">
+				<view class="loginTips">
+					点击登录
+				</view>
+			</view>
+			<view class="hasLogin" v-if="hasLogin">
+				<view class="loginHeadImg">
+					<image class="headImg" :src="headImg"></image>
+				</view>
+				<view class="loginMsg">
+					<view class="loginName">
+						{{userName}}
+					</view>
+					<view class="userGold">
+						<view class="totaldayNum">金币：500w</view>
+						<view class="todayNum">今日金币：5100</view>
+						<uni-icons type="right" color="#666666" size="15" />
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="taskMudule1">
+			<uni-grid :column="4" :highlight="true" @change="taskChange">
+				<uni-grid-item v-for="(item, index) in taskList" :index="index" :key="item.id" class="taskItem1">
+					<view class="grid-item-box">
+						<image class="image" :src="item.iconImg"></image>
+						<text class="title">{{item.title}}</text>
+					</view>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
+		<view class="uni-margin-wrap">
+			<swiper class="swiper swiperBanner" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+				<swiper-item v-for="(item,index) in swiperList" :key="index">
+					<view class="swiper-item" :to="item.link">
+						<image class="image" :src="item.img"></image>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<uni-list :border="false"  class="listModule">
+			<uni-list-item :border="false" :to="`./chat`" title="邀请入群" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="地址管理" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="常见问题" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="反馈投诉" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="设置中心" showArrow />
+		</uni-list>
+	</view>
+</template>
+
+<script>
+	import {getRandomArrayElements} from '@/utils/untis.js'
+	import { pathToBase64, base64ToPath } from '@/node_modules/image-tools/index.js';//图片懒加载
+	export default {
+		data() {
+			return {
+				userName:'彭于晏女朋友',
+				totalGold:500,
+				todayGold:100,
+				background: ['color1', 'color2', 'color3'],
+				autoplay: true,
+				interval: 2000,
+				duration: 1000,
+				headImg:'https://test-static01.pomoho.com/liming/images/mine/1.webp',
+				indicatorDots:false,
+				hasLogin:false,
+				headImgList:[
+					'https://test-static01.pomoho.com/liming/images/mine/1.webp',
+					'https://test-static01.pomoho.com/liming/images/mine/2.webp',
+					'https://test-static01.pomoho.com/liming/images/mine/3.webp',
+					'https://test-static01.pomoho.com/liming/images/mine/4.webp',
+					'https://test-static01.pomoho.com/liming/images/mine/5.avif',
+				],
+				taskList:[
+					{
+						id:1,
+						title:'面对面红包',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon1.png',
+					},{
+						id:2,
+						title:'邀请收徒',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon2.png',
+					},{
+						id:3,
+						title:'我的钱包',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon3.png',
+					},{
+						id:4,
+						title:'提现兑换',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon4.png',
+					},{
+						id:5,
+						title:'全民偷金币',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon5.png',
+					},{
+						id:6,
+						title:'幸运大转盘',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon6.png',
+					},{
+						id:7,
+						title:'好物大抽奖',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon7.png',
+					},{
+						id:8,
+						title:'金币福利社',
+						iconImg:'https://test-static01.pomoho.com/liming/images/mine/icon8.png',
+					}
+				],
+				swiperList:[
+					{
+						link:'./',
+						img:'https://test-static01.pomoho.com/liming/images/mine/banner.png',
+					},
+					{
+						link:'./',
+						img:'https://test-static01.pomoho.com/liming/images/mine/banner.png',
+					},
+					{
+						link:'./',
+						img:'https://test-static01.pomoho.com/liming/images/mine/banner.png',
+					}
+				],
+			}
+		},
+		onLoad() {
+			this.commonFun(true);
+			// this.headImg = getRandomArrayElements(this.headImgList,1)
+			pathToBase64(this.headImg)
+			.then(base64 => {
+				this.headImg = base64;
+			})
+			.catch(error => {
+				console.error(error)
+			})
+			for (let item in this.swiperList) {
+				pathToBase64(this.swiperList[item].img)
+				.then(base64 => {
+					this.swiperList[item].img = base64;
+				})
+				.catch(error => {
+					console.error(error)
+				})
+			}
+		},
+		mounted() {
+			
+		},
+		methods: {
+			taskChange(e) {
+				let {
+					index
+				} = e.detail
+				let id = this.taskList[index].id
+				uni.navigateTo({
+					url:'?id='+id
+				})
+		
+			},
+			onClick(e) {
+				console.log('执行click事件', e.data)
+				uni.showToast({
+					title: '点击反馈'
+				});
+			},
+			loginIn(){
+				//调起login页面
+				uni.navigateTo({
+					url: '../../components/login'
+				});
+			},
+			commonFun(boolean){
+				if(boolean){
+					if(Object.keys(this.$store.state.m_login.userMsg).length===0){
+						this.hasLogin = false;
+					}else{
+						this.hasLogin = true;
+					}
+				}
+			}
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	@import url('./index.less');
+</style>

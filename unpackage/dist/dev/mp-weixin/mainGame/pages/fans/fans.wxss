@@ -1,0 +1,76 @@
+
+view,
+label,
+swiper-item,
+scroll-view {
+  display:flex;
+  flex-direction:column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+button {
+  margin: 0;
+}
+
+.messagePage.data-v-74f2dff0 {
+  background: #fff;
+}
+.messagePage .messageList .item.data-v-74f2dff0 .uni-list-item__container {
+  padding: 26rpx 30rpx;
+}
+.messagePage .messageList .item .messageBox.data-v-74f2dff0 {
+  width: 450rpx;
+  justify-content: center;
+}
+.messagePage .messageList .item .messageBox .messageTitle.data-v-74f2dff0 {
+  margin-left: 24rpx;
+  color: #222222;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 3rpx;
+}
+.messagePage .messageList .item .rightText.data-v-74f2dff0 {
+  width: 140rpx;
+  justify-content: center;
+}
+.messagePage .messageList .item .rightText .messagetime.data-v-74f2dff0 {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  color: #EA1C24;
+  text-align: center;
+  border: 1rpx solid #EA1C24;
+  border-radius: 50rpx;
+}
+.messagePage .messageList .item .rightText .messagetime1.data-v-74f2dff0 {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  color: #BDBDBD;
+  border: 1rpx solid #BDBDBD;
+}
+.messagePage .messageList.data-v-74f2dff0 .uni-list--border-bottom {
+  height: 0;
+}
+

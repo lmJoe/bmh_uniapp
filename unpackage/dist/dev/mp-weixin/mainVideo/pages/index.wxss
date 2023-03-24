@@ -1,0 +1,67 @@
+
+view,
+label,
+swiper-item,
+scroll-view {
+  display:flex;
+  flex-direction:column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+view,
+image,
+input,
+scroll-view,
+swiper,
+swiper-item,
+text,
+textarea,
+video {
+  position: relative;
+  border: 0px solid #000000;
+  box-sizing: border-box;
+}
+swiper-item {
+  position: absolute;
+}
+button {
+  margin: 0;
+}
+
+.videoContainer.data-v-840fd47c {
+  font-size: 14rpx;
+  line-height: 24rpx;
+  display: flex;
+  flex-direction: row;
+}
+.videoContainer .right.data-v-840fd47c,
+.videoContainer .left.data-v-840fd47c {
+  width: 49%;
+  position: relative;
+}
+.videoContainer .right .pullImg.data-v-840fd47c,
+.videoContainer .left .pullImg.data-v-840fd47c {
+  width: 100%;
+  margin-bottom: 10rpx;
+}
+.videoContainer .right .msgInfo.data-v-840fd47c,
+.videoContainer .left .msgInfo.data-v-840fd47c {
+  position: absolute;
+  bottom: 10rpx;
+  left: 22rpx;
+  width: 90%;
+  color: #fff;
+  font-size: 28rpx;
+  line-height: 32rpx;
+}
+.videoContainer .right .msgInfo .title.data-v-840fd47c,
+.videoContainer .left .msgInfo .title.data-v-840fd47c {
+  margin-bottom: 10rpx;
+}
+.videoContainer .left.data-v-840fd47c {
+  margin-right: 2%;
+}
+

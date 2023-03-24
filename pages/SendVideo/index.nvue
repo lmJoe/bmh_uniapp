@@ -1,0 +1,151 @@
+<template>
+	<view class="sendVideo"
+		:style="{
+			'background-image': `url(${bgImg})`,
+			'background-color':'#F3F3F3',
+			'background-repeat': 'no-repeat',
+			'background-size': '100%',
+			'background-position': 'center top',
+		}">
+<!-- 		<view class="closePage" @click="closePage">
+			<image class="closeImg" src="../../../static/common/icon5.png" mode="aspectFit"></image>
+		</view> -->
+		<view class="defaultMsg">
+			<image class="headImg" :src="defaultImg" mode="aspectFit"></image>
+			<text class="name">{{hasLogin?userName:'暂未登录'}}</text>
+			<image class="levelImg" v-if="hasLogin" :src="level" mode="aspectFit"></image>
+		</view>
+		<view class="doCreate">
+			<view class="createLeft">
+				<text class="t1">Hi,开启创作之旅吧</text>
+				<text class="t2">用视频分享生活～</text>
+			</view>
+			<button class="btnStyle" @click="login">{{hasLogin?btnName:'点击登录'}}</button>
+		</view>
+		<view class="upLoad">
+			<view class="upLoadLeft" @click="turnCamera('upload')">
+				<image class="uploadImg" :src="upLoad" mode="aspectFit"></image>
+				<text>上传视频</text>
+			</view>
+			<image class="upLoadRight" src="" mode="aspectFit"></image>
+		</view>
+		<view class="shootVideo"
+			:style="{
+				'background-image': `url(${bgImg1})`,
+				'background-color':'rgb(255,255,255)',
+				'background-repeat': 'no-repeat',
+				'background-size': '100%',
+				'background-position': 'center center',
+			}"
+			@click="turnCamera('picture')"
+			>
+			<image class="shootImg" :src="icon1Img" mode=""></image>
+			现在开拍
+		</view>
+		<view class="videoData">
+			<text class="title">视频数据</text>
+			<text v-if="hasLogin==false" class="noData">您暂时没有视频数据～</text>
+			<view class="videoDataList">
+				<view v-if="hasLogin" v-for="(item,index) in videoData" :key="index" class="dataDom">
+					<image class="dataImg" :src="item.img" mode=""></image>
+					<text class="dataTitle">{{item.title}}</text>
+					<text class="dataNum">{{item.text}}</text>
+				</view>
+			</view>
+			
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data(){
+			return {
+				bgImg:'https://test-static01.pomoho.com/liming/images/send/bg.png',
+				bgImg1:'https://test-static01.pomoho.com/liming/images/send/bg2.png',
+				defaultImg:'https://test-static01.pomoho.com/liming/images/common/default.png',
+				upLoad:'https://test-static01.pomoho.com/liming/images/send/icon6.png',
+				icon1Img:'https://test-static01.pomoho.com/liming/images/send/icon.png',
+				level:'https://test-static01.pomoho.com/liming/images/send/level1.png',
+				hasLogin:false,
+				userName:'彭于晏女朋友',
+				btnName:'创作者认证',
+				videoData:[
+					{
+						img:'https://test-static01.pomoho.com/liming/images/send/icon1.png',
+						title:'播放时长',
+						text:'1300mins',
+					},{
+						img:'https://test-static01.pomoho.com/liming/images/send/icon2.png',
+						title:'有效播放人数',
+						text:'1300',
+					},{
+						img:'https://test-static01.pomoho.com/liming/images/send/icon3.png',
+						title:'点赞数',
+						text:'1300',
+					},{
+						img:'https://test-static01.pomoho.com/liming/images/send/icon4.png',
+						title:'评论数',
+						text:'1520',
+					},{
+						img:'https://test-static01.pomoho.com/liming/images/send/icon5.png',
+						title:'创作者分成',
+						text:'180.00元',
+					},{
+						img:'https://test-static01.pomoho.com/liming/images/send/icon5.png',
+						title:'创作者分成',
+						text:'1300mins',
+					}
+				],
+			}
+		},
+		onLoad() {
+			this.commonFun(true);
+		},
+		methods:{
+			closePage(){
+				uni.navigateBack();
+			},
+			login(){
+				//调起login页面
+				uni.navigateTo({
+					url: '../../components/login'
+				});
+			},
+			turnCamera(string){
+				// let type;
+				// if(string=='upload'){
+				// 	type = 'album';
+				// }else if(string=='picture'){
+				// 	type = 'camera';
+				// }
+				// uni.chooseImage({
+				// 	count: 1,
+				// 	sizeType: ['original', 'compressed'],
+				// 	sourceType: [type], //这要注意，camera掉拍照，album是打开手机相册
+				// 	success: (res)=> {
+				// 		const tempFilePaths = res.tempFilePaths;
+				// 		this.Imgs = res.tempFilePaths[0]
+				// 	}
+				// });
+				uni.navigateTo({
+					url: '../../components/upload'
+				});
+			},
+			commonFun(boolean){
+				if(boolean){
+					if(Object.keys(this.$store.state.m_login.userMsg).length===0){
+						this.hasLogin = false;
+					}else{
+						this.hasLogin = true;
+					}
+				}
+			},
+			
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	@import url('./index.less');
+</style>

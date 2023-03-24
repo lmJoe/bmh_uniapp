@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "uni-load-more": "/uni_modules/uni-load-more/components/uni-load-more/uni-load-more",
+    "video-item": "/mainHome/pages/video",
+    "lazy-load": "/uni_modules/muqian-lazyLoad/components/muqian-lazyLoad/muqian-lazyLoad"
+  }
+}

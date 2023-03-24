@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@vue/composition-api": "^1.7.1",
+    "@vue/reactivity": "^3.2.45",
+    "image-tools": "^1.4.0",
+    "js-md5": "^0.7.3",
+    "vuex-persistedstate": "^4.1.0"
+  }
+}

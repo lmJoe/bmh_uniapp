@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "uni-grid": "/uni_modules/uni-grid/components/uni-grid/uni-grid",
+    "uni-grid-item": "/uni_modules/uni-grid/components/uni-grid-item/uni-grid-item",
+    "uni-transition": "/uni_modules/uni-transition/components/uni-transition/uni-transition",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
+  }
+}

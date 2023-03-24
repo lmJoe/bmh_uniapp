@@ -1,0 +1,184 @@
+.MoneyPage{
+	// background:#fff;
+	.moneyTop{
+		width:100%;
+		height:363rpx;
+		position:relative;
+		// align-items: center;
+		.noLogin{
+			align-items: center;
+			.headDom{
+				margin-top:72rpx;
+				.uni-header-image{
+					width:112rpx;
+					height:112rpx;
+				}
+				
+			}
+			.headTip{
+				font-size:32rpx;
+				color:#2D1E01;
+				text-align: center;
+				margin-top:21rpx;
+			}
+		}
+		.hasLogin{
+			padding:0 34rpx;
+			margin-top:76rpx;
+			margin-bottom:55rpx;
+			display:flex;
+			flex-direction: row;
+			.title{
+				color:#222222;
+				font-size:24rpx;
+			}
+			.value{
+				display:flex;
+				justify-content: flex-start;
+				flex-direction: row;
+				color:#222222;
+				font-size:50rpx;
+				margin-top:20rpx;
+				font-weight: bold;
+			}
+			.goldList{
+				position:relative;
+				width:100%;
+				.icon1,.icon2,.icon3,.icon4{
+					position:absolute;
+					width:75rpx;
+					.iconImg{
+						width:74rpx;
+						height:80rpx;
+					}
+					.numIntro{
+						color:#B26519;
+						font-size:20rpx;
+					}
+					.num{
+						position:absolute;
+						color:#D80700;
+						font-size:20rpx;
+						text-align:center;
+						top:22rpx;
+						left:15rpx;
+					}
+				}
+				.icon1{
+					top:50rpx;
+					left:22rpx;
+				}
+				.icon2{
+					top:-20rpx;
+					left:133rpx;
+				}
+				.icon3{
+					top:10rpx;
+					left:255rpx;
+				}
+				.icon4{
+					top:30rpx;
+					left:384rpx;
+				}
+			}
+		}
+		.signPrompt{
+			margin-top:34rpx;
+			background:#fff;
+			width:686rpx;
+			border-radius: 16rpx;
+			box-shadow: 0rpx 3rpx 13rpx 0px #F2F2F2;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding:38rpx 31rpx;
+			font-size:30rpx;
+			color:#222222;
+			z-index:5;
+			.goPrompt{
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				font-size:24rpx;
+				color:#999999;
+				.jiantou{
+					width:12rpx;
+					height:24rpx;
+					margin-left:10rpx;
+					
+				}
+			}
+			
+		}
+	}
+	.goldtaskList{
+		margin-bottom:45rpx;
+		padding:64rpx 22rpx 0;
+		background:#fff;
+		.listTitle{
+			font-size:32rpx;
+			color:#222222;
+			padding:0 7rpx 35rpx 0;
+			// border-bottom: 0.001rpx solid #EAEAEA;
+		}
+		.list{
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding:34rpx 11rpx 32rpx 11rpx;
+			border-bottom: 1rpx solid #EAEAEA;
+			.listIntro{
+				.titleIntro{
+					font-size:24rpx;
+					color:#999999;
+				}
+				.goldBox{
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					font-size:24rpx;
+					
+					border-radius:50rpx;
+					padding-right:13rpx;
+					height:34rpx;
+				}
+				.progress{
+					margin-top:23rpx;
+					position:relative;
+					width:180rpx;
+					display: flex;
+					align-items: center;
+					justify-items: center;
+					.progressValue{
+						width:100%;
+						height:100%;
+						line-height:30rpx;
+						position:absolute;
+						font-size:20rpx;
+						text-align: center;
+					}
+				}
+			}
+			.GoSee{
+				width:134rpx;
+				height:56rpx;
+				line-height:56rpx;
+				font-size:26rpx;
+				color:#FF4B45;
+				border:1px solid #FF4B45;
+				border-radius: 50rpx;
+				text-align:center;
+			}
+		}
+	}
+}
+/deep/ .uni-progress-bar{  // 这主要是加上deep才能改变它原来的样式 
+	border-radius:15rpx;
+	width:180rpx;
+	height:22rpx;
+	
+}
+/deep/ .uni-progress-inner-bar{
+	border-radius:15rpx 0rpx 0rpx 15rpx;
+	padding-left:0;
+}

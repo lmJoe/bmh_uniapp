@@ -1,0 +1,155 @@
+<template>
+	<view class="messagePage">
+		<uni-list class="messageList">
+			<uni-list-item class="item" v-for="(item,index) in messageList">
+				<template v-slot:header>
+					<view class="slot-box">
+						<image class="slot-image" style="width:96rpx;height:96rpx;border-radius: 50%;" :src="item.headImg" mode="widthFix"></image>
+					</view>
+				</template>
+				<template v-slot:body>
+					<view class="messageBox">
+						<text class="slot-box slot-text messageTitle">{{item.name}}</text>
+					</view>
+				</template>
+				<template v-slot:footer>
+					<view class="rightText" @click="rightBtn(item)">
+						<text :class="[item.status==3?'messagetime1':'messagetime','slot-box', 'slot-text']">
+						{{item.status==1?'关注':item.status==2?'回关':item.status==3?'相互关注':''}}
+					</text>
+					</view>
+				</template>
+			</uni-list-item>
+		</uni-list>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				messageList:[
+					{
+						id:1,
+						name:'音社大爆炸',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/1.webp',
+						status:2,
+					},{
+						id:2,
+						name:'王晓初',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/2.webp',
+						status:2,
+					},{
+						id:3,
+						name:'Asen',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/3.webp',
+						status:3,
+					},{
+						id:4,
+						name:'GHJKS鼓掌',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/4.webp',
+						status:1,
+					},{
+						id:5,
+						name:'要相信光',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/3.webp',
+						status:1,
+					},{
+						id:6,
+						name:'王晓初',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/1.webp',
+						status:1,
+					},{
+						id:7,
+						name:'今天和明天',
+						headImg:'https://test-static01.pomoho.com/liming/images/mine/3.webp',
+						status:1,
+					},
+				]
+			}
+		},
+		methods: {
+			rightBtn(e){
+				switch (e.status){
+					case 1:
+						e.status = 3;
+						uni.showToast({
+							title: `关注成功`,
+							icon: 'none'
+						})
+						break;
+					case 2:
+						e.status = 3;
+						uni.showToast({
+							title: `互相关注成功`,
+							icon: 'none'
+						})
+						break;
+					case 3:
+						uni.showModal({
+							content: "确认取消关注？",
+							confirmText: "取消关注",
+							cancelText: "继续关注",
+							success: function (res) {
+									if (res.confirm) {
+										e.status = 2;
+									} else if (res.cancel) {
+										e.status = 3;
+									}
+								}
+						})
+						break;
+				}
+			}
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	.messagePage{
+		background:#fff;
+		.messageList{
+			.item{
+				/deep/ .uni-list-item__container{
+					padding:26rpx 30rpx;
+				}
+				.messageBox{
+					width:450rpx;
+					justify-content: center;
+					.messageTitle{
+						margin-left:24rpx;
+						color:#222222;
+						font-size:32rpx;
+						font-weight:bold;
+						margin-top:3rpx;
+					}
+				}
+				.rightText{
+					width:140rpx;
+					justify-content: center;
+					.messagetime{
+						height:50rpx;
+						line-height:50rpx;
+						font-size:26rpx;
+						color:#EA1C24;
+						text-align: center;
+						border:1rpx solid #EA1C24;
+						border-radius: 50rpx;
+					}
+					.messagetime1{
+						height:50rpx;
+						line-height:50rpx;
+						font-size:26rpx;
+						text-align: center;
+						border-radius: 50rpx;
+						color:#BDBDBD ;
+						border:1rpx solid #BDBDBD ;
+					}
+				}
+			}
+			/deep/ .uni-list--border-bottom{
+				height:0;
+			}
+		}
+	}
+</style>
