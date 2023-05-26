@@ -1,0 +1,112 @@
+@import "../../../nvue.wxss";
+.mineModule.data-v-004b27e7 {
+  background: #F9F9F9;
+  padding: 0 0.9375rem;
+}
+.mineModule .minepersonData .minepersion.data-v-004b27e7 {
+  width: 543rpx;
+  margin-left: 39rpx;
+}
+.mineModule .minepersonData .minepersion .name.data-v-004b27e7 {
+  text-align: left;
+  padding-top: 13rpx;
+}
+.mineModule .minepersonData .minepersion .mineGold.data-v-004b27e7 {
+  margin-top: 30rpx;
+}
+.mineModule .minepersonData .minepersion .mineGold .gold.data-v-004b27e7 {
+  text-align: center;
+  color: #777;
+  font-size: 26rpx;
+}
+.mineModule .minepersonData .minepersion .loginTips.data-v-004b27e7 {
+  font-size: 44rpx;
+  color: #222222;
+}
+.mineModule .taskMudule1.data-v-004b27e7 {
+  width: 694rpx;
+  margin-top: 51rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0px 0px 25rpx 0px #EDEDED;
+  padding-bottom: 39rpx;
+}
+.mineModule .taskMudule1 .taskItem1.data-v-004b27e7 {
+  position: relative;
+  width: 173.5rpx !important;
+}
+.mineModule .taskMudule1 .taskItem1 .image.data-v-004b27e7 {
+  width: 52rpx;
+  height: 52rpx;
+  position: absolute;
+  top: 38rpx;
+}
+.mineModule .taskMudule1 .taskItem1 .title.data-v-004b27e7 {
+  font-size: 22rpx;
+  color: #333;
+  position: absolute;
+  top: 110rpx;
+  left: 0;
+  right: 0;
+}
+.mineModule .swiperBanner.data-v-004b27e7 {
+  width: 694rpx;
+  height: 128rpx;
+  margin-top: 36rpx;
+}
+.mineModule .swiperBanner .swiper-item .image.data-v-004b27e7 {
+  width: 694rpx;
+  height: 128rpx;
+}
+.mineModule .listModule.data-v-004b27e7 {
+  margin-top: 36rpx;
+  box-shadow: 0px 0px 25px 0px #EDEDED;
+  border-radius: 12px;
+}
+.data-v-004b27e7 .uni-card--full {
+  padding: 0;
+  background: transparent;
+}
+.data-v-004b27e7 .uni-card--shadow {
+  box-shadow: none;
+}
+.data-v-004b27e7 .uni-card--border {
+  border-top-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+.data-v-004b27e7 .uni-card .uni-card__header {
+  border-bottom-width: 0;
+}
+.data-v-004b27e7 .uni-card .uni-card__header {
+  padding: 0;
+}
+.data-v-004b27e7 .uni-card .uni-card__header .uni-card__header-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-right: 39rpx;
+}
+.data-v-004b27e7 .uni-card .uni-card__header .uni-card__header-avatar .uni-card__header-avatar-image {
+  width: 140rpx;
+  height: 140rpx;
+}
+.data-v-004b27e7 .uni-card .uni-card__header .uni-card__header-content .uni-card__header-content-title {
+  font-size: 44rpx;
+  color: #111111;
+}
+.data-v-004b27e7 .uni-card .uni-card__content .mineGold {
+  font-size: 26rpx;
+  margin-left: 150rpx;
+}
+.data-v-004b27e7 .uni-grid--border {
+  border-left-width: 0;
+}
+.data-v-004b27e7 .uni-grid-item--border-top {
+  border-top-width: 0;
+}
+.data-v-004b27e7 .uni-grid-item--border {
+  border-bottom-width: 0;
+  border-right-width: 0;
+}

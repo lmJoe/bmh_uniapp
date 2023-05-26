@@ -29,16 +29,10 @@
 		},
 		methods: {
 			noAgree(){
-				if(!this.noagreeShow){
-					this.$emit("closePop",false);
-				}else{
-					this.noagreeShow = false;
-				}
-				
+				this.noagreeShow = false;
 			},
 			agree(){
-				this.$emit("checkboxChange",true);
-				this.$emit("closePop",true);
+				
 			}
 		}
 	}

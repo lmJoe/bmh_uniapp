@@ -26,15 +26,14 @@
 		uni.showLoading({
 			title:'加载中...'
 		})
-		let ts = parseInt(new Date().getTime() / 1000);
-		
+		let ts = parseInt(new Date().getTime() / 1000)
 		let rd = getRandomNum(5, 50)
 		var data = {
 		  appKey: URL.appkey,
 		  pageSize: pageSize,
 		  pageIndex: pageIndex,
 		  channelId: channelId,
-		  ts:ts,
+		  ts,
 		  rd,
 		  tk: Md5(`${ts}_${rd}_${URL.appkey}_${pageSize}`).toUpperCase()
 		}
@@ -42,7 +41,6 @@
 			ContentType:'application/x-www-form-urlencoded'
 		}
 		request(URL.getVideoList, data, header, 'POST').then(res => {
-			console.log('ts',res)
 			uni.hideLoading()
 			callback(res)
 		}).catch(res => {

@@ -1,0 +1,111 @@
+@import "../../../nvue.wxss";
+.MoneyPage .moneyTop.data-v-179fcef3 {
+  width: 100%;
+  height: 363rpx;
+  align-items: center;
+  position: relative;
+}
+.MoneyPage .moneyTop .headDom.data-v-179fcef3 {
+  margin-top: 72rpx;
+}
+.MoneyPage .moneyTop .headDom .uni-header-image.data-v-179fcef3 {
+  width: 112rpx;
+  height: 112rpx;
+}
+.MoneyPage .moneyTop .headTip.data-v-179fcef3 {
+  font-size: 32rpx;
+  color: #2D1E01;
+  text-align: center;
+  margin-top: 21rpx;
+}
+.MoneyPage .moneyTop .signPrompt.data-v-179fcef3 {
+  margin-top: 34rpx;
+  background: #fff;
+  width: 686rpx;
+  border-radius: 16rpx;
+  box-shadow: 0rpx 3rpx 13rpx 0px #F2F2F2;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 38rpx 31rpx;
+  font-size: 30rpx;
+  color: #222222;
+  z-index: 5;
+}
+.MoneyPage .moneyTop .signPrompt .goPrompt.data-v-179fcef3 {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999999;
+}
+.MoneyPage .moneyTop .signPrompt .goPrompt .jiantou.data-v-179fcef3 {
+  width: 12rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+}
+.MoneyPage .goldtaskList.data-v-179fcef3 {
+  margin-bottom: 45rpx;
+  padding: 64rpx 22rpx 0;
+  background: #fff;
+}
+.MoneyPage .goldtaskList .listTitle.data-v-179fcef3 {
+  font-size: 32rpx;
+  color: #222222;
+  padding: 0 7rpx 35rpx 0;
+}
+.MoneyPage .goldtaskList .list.data-v-179fcef3 {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 34rpx 11rpx 32rpx 11rpx;
+  border-bottom: 1rpx solid #EAEAEA;
+}
+.MoneyPage .goldtaskList .list .listIntro .titleIntro.data-v-179fcef3 {
+  font-size: 24rpx;
+  color: #999999;
+}
+.MoneyPage .goldtaskList .list .listIntro .goldBox.data-v-179fcef3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24rpx;
+  border-radius: 50rpx;
+  padding-right: 13rpx;
+  height: 34rpx;
+}
+.MoneyPage .goldtaskList .list .listIntro .progress.data-v-179fcef3 {
+  margin-top: 23rpx;
+  position: relative;
+  width: 180rpx;
+}
+.MoneyPage .goldtaskList .list .listIntro .progress .progressValue.data-v-179fcef3 {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 35%;
+  right: 0;
+  font-size: 18rpx;
+}
+.MoneyPage .goldtaskList .list .GoSee.data-v-179fcef3 {
+  width: 134rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 26rpx;
+  color: #FF4B45;
+  border: 1px solid #FF4B45;
+  border-radius: 50rpx;
+  text-align: center;
+}
+.data-v-179fcef3 .uni-progress-bar {
+  border-radius: 15rpx;
+  width: 180rpx;
+  height: 22rpx;
+}
+.data-v-179fcef3 .uni-progress-inner-bar {
+  border-radius: 15rpx 0rpx 0rpx 15rpx;
+  padding-left: 0;
+}
+.uni-list-item__container.data-v-179fcef3 {
+  flex-direction: column;
+}

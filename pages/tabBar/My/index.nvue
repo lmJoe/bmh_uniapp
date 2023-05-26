@@ -1,0 +1,171 @@
+<template>
+	<view class="mineModule">
+		<view class="minepersonData">
+			<view class="uni-flex uni-row">
+				<view class="text uni-flex" style="width: 200rpx;height: 220rpx;-webkit-justify-content: center;justify-content: center;-webkit-align-items: center;align-items: center;">
+					<image :src="headImg" style="width: 150rpx;height: 150rpx;"></image>
+				</view>
+				<view class="uni-flex uni-column" style="-webkit-flex: 1;flex: 1;-webkit-justify-content: space-between;justify-content: space-between;">
+					<view class="text" style="height: 120rpx;text-align: left;padding-left: 20rpx;padding-top: 10rpx;">
+						{{userName}}
+					</view>
+					<view class="uni-flex uni-row">
+						<view class="text" style="-webkit-flex: 1;flex: 1;">金币：500w</view>
+						<view class="text" style="-webkit-flex: 1;flex: 1;">今日金币：5100</view>
+					</view>
+				</view>
+			</view>
+	<!-- 		<view class="uni-flex uni-column minepersion">
+				<view class="loginTips">
+					点击登录
+				</view>
+			</view> -->
+		</view>
+		<view class="taskMudule1">
+			<uni-grid :column="4" :highlight="true" @change="taskChange">
+				<uni-grid-item v-for="(item, index) in taskList" :index="index" :key="item.id" class="taskItem1">
+					<view class="grid-item-box">
+						<image class="image" :src="item.iconImg"></image>
+						<text class="title">{{item.title}}</text>
+					</view>
+				</uni-grid-item>
+			</uni-grid>
+		</view>
+		<view class="uni-margin-wrap">
+			<swiper class="swiper swiperBanner" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+				<swiper-item v-for="(item,index) in swiperList" :key="index">
+					<view class="swiper-item" :to="item.link">
+						<image class="image" :src="item.img"></image>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<uni-list :border="false"  class="listModule">
+			<uni-list-item :border="false" :to="`./chat`" title="邀请入群" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="地址管理" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="常见问题" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="反馈投诉" showArrow />
+			<uni-list-item :border="false" :to="`./chat`" title="设置中心" showArrow />
+		</uni-list>
+	</view>
+</template>
+
+<script>
+	import {getRandomArrayElements} from '@/utils/untis.js'
+	import { pathToBase64, base64ToPath } from '@/node_modules/image-tools/index.js';//图片懒加载
+	'@/static/mine/1.webp'
+	export default {
+		data() {
+			return {
+				userName:'彭于晏女朋友',
+				totalGold:500,
+				todayGold:100,
+				background: ['color1', 'color2', 'color3'],
+				autoplay: true,
+				interval: 2000,
+				duration: 1000,
+				headImg:'../../../static/mine/1.webp',
+				headImgList:[
+					'../../../static/mine/1.webp',
+					'../../../static/mine/2.webp',
+					'../../../static/mine/3.webp',
+					'../../../static/mine/4.webp',
+					'../../../static/mine/5.avif',
+				],
+				taskList:[
+					{
+						id:1,
+						title:'面对面红包',
+						iconImg:'../../../static/mine/icon1.png',
+					},{
+						id:2,
+						title:'邀请收徒',
+						iconImg:'../../../static/mine/icon2.png',
+					},{
+						id:3,
+						title:'我的钱包',
+						iconImg:'../../../static/mine/icon3.png',
+					},{
+						id:4,
+						title:'提现兑换',
+						iconImg:'../../../static/mine/icon4.png',
+					},{
+						id:5,
+						title:'全民偷金币',
+						iconImg:'../../../static/mine/icon5.png',
+					},{
+						id:6,
+						title:'幸运大转盘',
+						iconImg:'../../../static/mine/icon6.png',
+					},{
+						id:7,
+						title:'好物大抽奖',
+						iconImg:'../../../static/mine/icon7.png',
+					},{
+						id:8,
+						title:'金币福利社',
+						iconImg:'../../../static/mine/icon8.png',
+					}
+				],
+				swiperList:[
+					{
+						link:'./',
+						img:'../../../static/mine/banner.png',
+					},
+					{
+						link:'./',
+						img:'../../../static/mine/banner.png',
+					},
+					{
+						link:'./',
+						img:'../../../static/mine/banner.png',
+					}
+				],
+			}
+		},
+		onLoad() {
+			// this.headImg = getRandomArrayElements(this.headImgList,1)
+			pathToBase64(this.headImg)
+			.then(base64 => {
+				this.headImg = base64;
+			})
+			.catch(error => {
+				console.error(error)
+			})
+			for (let item in this.swiperList) {
+				pathToBase64(this.swiperList[item].img)
+				.then(base64 => {
+					this.swiperList[item].img = base64;
+				})
+				.catch(error => {
+					console.error(error)
+				})
+			}
+		},
+		mounted() {
+		
+		},
+		methods: {
+			taskChange(e) {
+				let {
+					index
+				} = e.detail
+				let id = this.taskList[index].id
+				uni.navigateTo({
+					url:'?id='+id
+				})
+		
+			},
+			onClick(e) {
+				console.log('执行click事件', e.data)
+				uni.showToast({
+					title: '点击反馈'
+				});
+			},
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	@import url('./index.less');
+</style>

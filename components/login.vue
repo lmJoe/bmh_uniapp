@@ -7,16 +7,15 @@
 		<view class="loginBtn">
 			<button class="button" @click="login">登录领取红包</button>
 			<view class="loginDeal" :animation="animationData">
-				<checkbox-group @change="checkboxChange()">
+				<checkbox-group @change="checkboxChange">
 					<label class="argeeIntro">
 						<checkbox :checked="readNo" color="#3DBC7A" style="transform:scale(0.7)" />
-						我已阅读并同意
+						<view class="iKnow">我已阅读并同意
+							<text class="deal" @click="introPop(1)">《用户协议》</text>与
+							<text class="practy" @click="introPop(2)">《隐私政策》</text>
+						</view>
 					</label>
 				</checkbox-group>
-				<view class="iKnow">
-					<text class="deal"  @click="introPop(1)">《用户协议》</text>与
-					<text class="practy"  @click="introPop(2)">《隐私政策》</text>
-				</view>
 			</view>
 		</view>
 		<view class="title-split">
@@ -30,7 +29,7 @@
 		</view>
 		<image class="close" :src="closeImg" @click="closeBack"></image>
 		<uni-transition ref="ani" class="argeePopBg" custom-class="transition" mode-class="fade" :show="argeeShow">
-			<popup-Item class="introPop" @checkboxChange='checkboxChange' @closePop='closePop'></popup-Item>
+			<popup-Item class="introPop"></popup-Item>
 		</uni-transition>
 	</view>
 </template>
@@ -38,20 +37,18 @@
 <script>
 	import { pathToBase64, base64ToPath } from '@/node_modules/image-tools/index.js';//图片懒加载
 	import popupItem from '@/components/popup.vue'
-	import {mapState,mapMutations} from  'vuex';
+	import {userStore} from '@/stores/counter.js'
+	const userStoreTemp = userStore();
 	export default {
 		components: {
 		    popupItem,
 		},
-		computed:{
-			...mapState('m_login',[])//指定访问路径，并将state中的值映射出来
-		},
 		data() {
 			return {
-				logImg:'https://test-static01.pomoho.com/liming/images/common/logo.png',
-				wayIcon:'https://test-static01.pomoho.com/liming/images/common/icon3.png',
-				weixin:'https://test-static01.pomoho.com/liming/images/common/icon4.png',
-				closeImg:'https://test-static01.pomoho.com/liming/images/common/icon5.png',
+				logImg:'../static/common/logo.png',
+				wayIcon:'../static/common/icon3.png',
+				weixin:'../static/common/icon4.png',
+				closeImg:'../static/common/icon5.png',
 				readNo:false,
 				argeeShow:false,
 				animationData: ''
@@ -94,23 +91,11 @@
 			})
 		},
 		methods: {
-			//通过mapMutations的方法将m_login模块中的方法映射到当前页面中
-			...mapMutations('m_login',['setUserMsg']),
 			closeBack(){
 				uni.navigateBack();
 			},
 			introPop(num){
 				this.argeeShow = true;
-			},
-			closePop(boolean){
-				if(!boolean){
-					this.argeeShow = false;
-					this.readNo = false;
-				}else{
-					this.readNo = true;
-					this.argeeShow = false;
-				}
-				
 			},
 			login(){
 				if(!this.readNo){
@@ -121,33 +106,13 @@
 				}else{
 					//进行微信登录
 					//登录成功后种下token
-					const params = {
-						userName:'liming',
-						passWorld:'123456789',
-						userToken:'Bears 88888888',
-					}
-					this.setUserMsg(params);
-					//并关闭当前页
-					let pages = getCurrentPages() // 获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
-				    let prevPage = pages[pages.length - 2] //上一页页面实例
-				    uni.navigateBack({
-						delta:1,
-						success:() => {
-							prevPage.$vm.commonFun(true) // 给上一页绑定方法otherFun,传参地址id
-						}
-				    })
-					
+					userStoreTemp.setUserToken('123456')
+					console.log('navId',userStoreTemp.token);
 				}
 			},
-			checkboxChange(boolean){
-				if(boolean?boolean:''){
-					this.readNo = true;;
-				}else{
-					this.readNo = !this.readNo;
-				}
-				
-			},
-
+			checkboxChange(){
+				this.readNo = !this.readNo;
+			}
 			
 		}
 	}
@@ -184,7 +149,7 @@
 				color:#fff;
 				border-radius: 100rpx;
 				background-color:rgba(61,188,122,1);
-				background-image:url('https://test-static01.pomoho.com/liming/images/common/icon4.png');
+				background-image:url('../static/common/icon4.png');
 				background-repeat: no-repeat;
 				/*超大背景图片的做法 背景定位*/
 				background-position: 110rpx center;
@@ -197,18 +162,16 @@
 			}
 			.loginDeal{
 				margin-top:61rpx;
-				display: flex;
-				align-items: center;
-				justify-content: center;
 				/deep/ .uni-checkbox-input{
 					border-radius: 50%;
 				}
 				.argeeIntro{
-			
-					font-size:22rpx;
-					color:#999999;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					.iKnow{
-						
+						font-size:22rpx;
+						color:#999999;
 						.practy,.deal{
 							color:#333333;
 							font-size:22rpx;

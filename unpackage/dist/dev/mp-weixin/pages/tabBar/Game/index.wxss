@@ -1,0 +1,82 @@
+@import "../../../nvue.wxss";
+.messagePage.data-v-1babb5e1 {
+  background-color: #fff;
+}
+.messagePage .messageList1 .item .messageBox.data-v-1babb5e1 {
+  width: 486rpx;
+}
+.messagePage .messageList1 .item .messageBox .messageTitle.data-v-1babb5e1 {
+  margin-left: 24rpx;
+  color: #222222;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 3rpx;
+}
+.messagePage .messageList1 .item .messageBox .messageIntro.data-v-1babb5e1 {
+  margin-left: 24rpx;
+  color: #999999;
+  font-size: 26rpx;
+  margin-top: 15rpx;
+  lines: 1;
+  text-overflow: ellipsis;
+}
+.messagePage .messageList1 .item .rightText.data-v-1babb5e1 {
+  width: 110rpx;
+}
+.messagePage .messageList1 .item .rightText .messagetime.data-v-1babb5e1 {
+  font-size: 24rpx;
+  color: #999999;
+  text-align: right;
+}
+.messagePage .messageList1 .item .rightText .messagenum.data-v-1babb5e1 {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #FD453C;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 50%;
+  text-align: center;
+  margin: 18rpx 0 0 70rpx;
+}
+.messagePage .messageList1.data-v-1babb5e1 .uni-list--border-bottom {
+  height: 0;
+}
+.messagePage .messageList2 .item .messageBox.data-v-1babb5e1 {
+  width: 486rpx;
+}
+.messagePage .messageList2 .item .messageBox .messageTitle.data-v-1babb5e1 {
+  margin-left: 24rpx;
+  color: #222222;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 3rpx;
+}
+.messagePage .messageList2 .item .messageBox .messageIntro.data-v-1babb5e1 {
+  margin-left: 24rpx;
+  color: #999999;
+  font-size: 26rpx;
+  margin-top: 15rpx;
+}
+.messagePage .messageList2 .item .rightText.data-v-1babb5e1 {
+  width: 110rpx;
+}
+.messagePage .messageList2 .item .rightText .messagetime.data-v-1babb5e1 {
+  font-size: 24rpx;
+  color: #999999;
+  text-align: right;
+}
+.messagePage .messageList2 .item .rightText .messagenum.data-v-1babb5e1 {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #FD453C;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 50%;
+  text-align: center;
+  margin: 18rpx 0 0 70rpx;
+}
+.messagePage.data-v-1babb5e1 .uni-list:after {
+  height: 0;
+}

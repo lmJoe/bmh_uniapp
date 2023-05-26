@@ -1,39 +1,42 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "minified": true,
-    "postcss": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "",
-  "appid": "wx229625dec6ab1026",
-  "projectname": "uiapp_bmh",
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
+    "description": "项目配置文件。",
+    "setting": {
+        "urlCheck": false,
+        "minified": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "coverView": false,
+        "postcss": false,
+        "enhance": false,
+        "showShadowRootInWxmlPanel": false,
+        "packNpmRelationList": [],
+        "ignoreUploadUnusedFiles": true
     },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": 0,
-      "list": [
-        {
-          "name": "test",
-          "id": 0,
-          "pathName": "pages/prompt/promptPage"
+    "compileType": "miniprogram",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "test",
+                    "pathName": "pages/prompt/promptPage",
+                    "query": ""
+                }
+            ]
         }
-      ]
+    },
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
+    },
+    "libVersion": "2.29.0",
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "simulatorPluginLibVersion": {
+        "wxext14566970e7e9f62": "2.27.3"
     }
-  }
 }

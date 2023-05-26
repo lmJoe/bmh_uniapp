@@ -1,0 +1,33 @@
+.detailModule.data-v-738af207 {
+  background-color: #fff;
+}
+.detailModule .banner.data-v-738af207 {
+  position: relative;
+}
+.detailModule .videoList.data-v-738af207 {
+  margin-top: 60rpx;
+}
+.detailModule .uni-media-list-logo.data-v-738af207 {
+  width: 290rpx !important;
+  height: 192rpx !important;
+  margin-right: 25rpx;
+}
+.detailModule .uni-media-list-body.data-v-738af207 {
+  height: auto;
+  justify-content: space-around;
+}
+.detailModule .uni-media-list-text-top.data-v-738af207 {
+  height: 74rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  color: #333;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.detailModule .uni-media-list-text-bottom.data-v-738af207 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

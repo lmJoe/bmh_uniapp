@@ -1,0 +1,258 @@
+<template>
+    <view class="tabs">
+        <scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false" :scroll-into-view="scrollInto">
+            <view v-for="(tab,index) in tabBars" :key="tab.Channel_Id" class="uni-tab-item" :id="tab.id" :data-current="index" @click="ontabtap">
+                <text class="uni-tab-item-title" :class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.ChannelName}}</text>
+            </view>
+        </scroll-view>
+        <view class="line-h"></view>
+        <swiper :current="tabIndex" class="swiper-box" style="flex: 1;" :duration="300" @change="ontabchange">
+            <swiper-item class="swiper-item" v-for="(tab,index1) in newsList" :key="index1">
+    			<!-- #ifdef APP-NVUE -->
+    			<list class="scroll-v list" enableBackToTop="true" scroll-y loadmoreoffset="15" @loadmore="loadMore(index1)">
+    				<refresh class="refresh" @refresh="onrefresh(index1)" @pullingdown="onpullingdown" :display="tab.refreshing ? 'show' : 'hide'">
+    					<div class="refresh-view">
+    						<image class="refresh-icon" :src="refreshIcon" :style="{width: (tab.refreshing || pulling) ? 0: '30px'}" :class="{'refresh-icon-active': tab.refreshFlag}"></image>
+    						<loading-indicator class="loading-icon" animating="true" v-if="tab.refreshing"></loading-indicator>
+    						<text class="loading-text">{{tab.refreshText}}</text>
+    					</div>
+    				</refresh>
+    				<cell v-for="(newsitem,index2) in tab.data" :key="newsitem.id">
+    					<media-item :options="newsitem" @click="goDetail(newsitem)"></media-item>
+    				</cell>
+    				<cell class="loading-more" v-if="tab.isLoading || tab.data.length > 4">
+    					<text class="loading-more-text">{{tab.loadingText}}</text>
+    				</cell>
+    			</list>
+    			<!-- #endif -->
+    			<!-- #ifndef APP-NVUE -->
+    			<scroll-view class="scroll-v list" enableBackToTop="true" scroll-y @scrolltolower="loadMore(index1)">
+    				<view v-for="(newsitem,index2) in tab.data" :key="newsitem.id">
+    					<media-item :options="newsitem" @click="goDetail(newsitem)"></media-item>
+    				</view>
+    				<view class="loading-more" v-if="tab.isLoading || tab.data.length > 4">
+    					<text class="loading-more-text">{{tab.loadingText}}</text>
+    				</view>
+    			</scroll-view>
+    			<!-- #endif -->
+            </swiper-item>
+        </swiper>
+    </view>
+</template>
+<script>
+	import {userStore} from '@/stores/counter'
+	import {getChannelList,getVideoList} from '@/utils/request.js'
+	import {changeHourMinutestr} from '@/utils/untis.js'
+	import mediaItem from './news-item.vue';
+    // 缓存每页最多
+    const MAX_CACHE_DATA = 100;
+    // 缓存页签数量
+    const MAX_CACHE_PAGE = 3;
+	const userStoreTemp = userStore();
+    export default {
+		components: {
+		    mediaItem,
+			
+		},
+        data() {
+            return {
+				newsList: [],
+                cacheTab: [],
+                tabIndex: 0,
+                tabBars: [],
+				scrollInto: "",
+                showTips: false,
+                navigateFlag: false,
+                pulling: false,
+				pageIndex:1,
+				pageSize:10,
+				channelId:'',
+				// channelArr:[],
+                
+            }
+        },
+		onLoad() {
+		    setTimeout(()=>{
+		      this.tabBars.forEach((tabBar) => {
+		          this.newsList.push({
+		              data: [],
+		              isLoading: false,
+		              refreshText: "",
+		              loadingText: '加载更多...'
+		          });
+		      });
+		      this.getList(0);
+		    },1000)
+		},
+		mounted() {
+			this.getChannelList()
+		}, 
+		onPullDownRefresh() {
+			console.log('onPullDownRefresh');
+			uni.stopPullDownRefresh();
+		},
+        methods: {
+			getChannelList(){
+				getChannelList((response) => {
+					if(response.code==1){
+						let tabBars = response.data;
+						tabBars = tabBars.map((item,index) => {
+						      return{
+						        ...item,
+						        id:'ID'+index,
+						      }
+						    })
+						this.tabBars = tabBars;
+						this.channelId = response.data[0].Channel_Id;
+						userStoreTemp.setNavId(response.data[0].Channel_Id)
+						console.log('response',this.tabBars);
+						console.log('navId',userStoreTemp.navId);
+						
+						// for (let item in response.data) {
+						// 	this.channelArr.push(item.Channel_Id);
+						// }
+						// userStoreTemp.setNavIdArr(this.channelArr)
+						// console.log("this.channelArr",userStoreTemp.NavIdArr);
+					}
+				})
+			},
+			getList(index) {
+				console.log(index);
+				getVideoList(this.pageIndex,this.pageSize,this.channelId,(response) => {
+					console.log(response);
+					if(response.code==1){
+						let videoData = response.data;
+						for (let i in videoData) {
+							videoData[i].Duration = changeHourMinutestr(videoData[i].Duration);
+							videoData[i].CoverImgs = videoData[i].CoverImgs.replace('baomihua','pomoho');
+							videoData[i].HeadImg = videoData[i].HeadImg.replace('baomihua','pomoho');
+						}
+						let activeTab = this.newsList[index];
+						activeTab.data = activeTab.data.concat(videoData);
+						console.log("this.newsList",this.newsList)
+					}
+				})
+			},
+			goDetail(e) {
+			    if (this.navigateFlag) {
+			        return;
+			    }
+			    this.navigateFlag = true;
+			    uni.navigateTo({
+			        url: './detail/detail?id=' + e.Video_ID
+			    });
+			    setTimeout(() => {
+			        this.navigateFlag = false;
+			    }, 200)
+			},
+			close(index1, index2) {
+			    uni.showModal({
+			        content: '是否删除本条信息？',
+			        success: (res) => {
+			            if (res.confirm) {
+			                this.newsList[index1].data.splice(index2, 1);
+			            }
+			        }
+			    })
+			},
+			loadMore(e) {
+			    setTimeout(() => {
+					this.pageIndex = this.pageIndex + 1;
+			        this.getList(this.tabIndex);
+			    }, 500)
+			},
+			ontabtap(e) {
+			    let index = e.target.dataset.current || e.currentTarget.dataset.current;
+			    this.switchTab(index);
+			},
+			ontabchange(e) {
+			    let index = e.target.current || e.detail.current;
+			    this.switchTab(index);
+			},
+			switchTab(index) {
+			    if (this.newsList[index].data.length === 0) {
+					for (let i in this.tabBars) {
+						if(Number(i)==index){
+							this.channelId = this.tabBars[i].Channel_Id;
+							this.getList(index);
+						}
+					}
+			        
+			    }
+			    if (this.tabIndex === index) {
+			        return;
+			    }
+			
+			    // 缓存 tabId
+				
+			    if (this.newsList[this.tabIndex].data.length > MAX_CACHE_DATA) {
+			        let isExist = this.cacheTab.indexOf(this.tabIndex);
+			        if (isExist < 0) {
+			            this.cacheTab.push(this.tabIndex);
+			            //console.log("cache index:: " + this.tabIndex);
+			        }
+			    }
+			
+			    this.tabIndex = index;
+			    this.scrollInto = this.tabBars[index].id;
+				console.log('this.scrollInto',this.scrollInto);
+			
+			    // 释放 tabId
+			    if (this.cacheTab.length > MAX_CACHE_PAGE) {
+			        let cacheIndex = this.cacheTab[0];
+			        this.clearTabData(cacheIndex);
+			        this.cacheTab.splice(0, 1);
+			        //console.log("remove cache index:: " + cacheIndex);
+			    }
+			},
+			clearTabData(e) {
+			    this.newsList[e].data.length = 0;
+			    this.newsList[e].loadingText = "加载更多...";
+			},
+			refreshData() {},
+			onrefresh(e) {
+			    var tab = this.newsList[this.tabIndex];
+			    if (!tab.refreshFlag) {
+			        return;
+			    }
+			    tab.refreshing = true;
+			    tab.refreshText = "正在刷新...";
+			
+			    setTimeout(() => {
+			        this.refreshData();
+			        this.pulling = true;
+			        tab.refreshing = false;
+					tab.refreshFlag = false;
+			        tab.refreshText = "已刷新";
+			        setTimeout(() => { // TODO fix ios和Android 动画时间相反问题
+			            this.pulling = false;
+			        }, 500);
+			    }, 2000);
+			},
+			onpullingdown(e) {
+			    var tab = this.newsList[this.tabIndex];
+			    if (tab.refreshing || this.pulling) {
+			        return;
+			    }
+			    if (Math.abs(e.pullingDistance) > Math.abs(e.viewHeight)) {
+			        tab.refreshFlag = true;
+			        tab.refreshText = "释放立即刷新";
+			    } else {
+			        tab.refreshFlag = false;
+			        tab.refreshText = "下拉可以刷新";
+			    }
+			},
+			newGuid() {
+			    let s4 = function() {
+			        return (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
+			    }
+			    return (s4() + s4() + "-" + s4() + "-4" + s4().substr(0, 3) + "-" + s4() + "-" + s4() + s4() + s4()).toUpperCase();
+			}
+        }
+    }
+</script>
+
+<style scoped lang="less">
+    @import url("./index.less");
+</style>
+

@@ -1,0 +1,43 @@
+@import "../../../../nvue.wxss";
+.messagePage.data-v-5af34cb8 {
+  background: #fff;
+}
+.messagePage .messageList .item.data-v-5af34cb8 .uni-list-item__container {
+  padding: 26rpx 30rpx;
+}
+.messagePage .messageList .item .messageBox.data-v-5af34cb8 {
+  width: 450rpx;
+  justify-content: center;
+}
+.messagePage .messageList .item .messageBox .messageTitle.data-v-5af34cb8 {
+  margin-left: 24rpx;
+  color: #222222;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 3rpx;
+}
+.messagePage .messageList .item .rightText.data-v-5af34cb8 {
+  width: 140rpx;
+  justify-content: center;
+}
+.messagePage .messageList .item .rightText .messagetime.data-v-5af34cb8 {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  color: #EA1C24;
+  text-align: center;
+  border: 1rpx solid #EA1C24;
+  border-radius: 50rpx;
+}
+.messagePage .messageList .item .rightText .messagetime1.data-v-5af34cb8 {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  color: #BDBDBD;
+  border: 1rpx solid #BDBDBD;
+}
+.messagePage .messageList.data-v-5af34cb8 .uni-list--border-bottom {
+  height: 0;
+}

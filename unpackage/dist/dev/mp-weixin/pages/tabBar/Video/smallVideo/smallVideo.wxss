@@ -1,0 +1,85 @@
+.smallVideo.data-v-678be5ba {
+  display: flex;
+  /* 主轴方向为垂直方向,起点在上方 */
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.smallVideo .likeBox.data-v-678be5ba {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 150rpx;
+  height: 150rpx;
+}
+.smallVideo .likeBox image.data-v-678be5ba {
+  width: 100%;
+  height: 100%;
+}
+.smallVideo .msgInfo.data-v-678be5ba {
+  position: absolute;
+  bottom: 34rpx;
+  left: 0;
+}
+.smallVideo .msgInfo .msg1.data-v-678be5ba {
+  height: 55rpx;
+  margin-top: 32rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.smallVideo .msgInfo .msg1 .headImg.data-v-678be5ba {
+  width: 75rpx !important;
+  height: 75rpx;
+  background-size: 100%;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+.smallVideo .msgInfo .msg1 .nickName.data-v-678be5ba {
+  font-size: 30rpx;
+  color: #FFFFFF;
+  margin-right: 29rpx;
+}
+.smallVideo .msgInfo .msg1 .favBtn.data-v-678be5ba {
+  color: #fff;
+  backaground: #F55D58;
+  font-size: 20rpx;
+}
+.smallVideo .msgInfo .videoTitle.data-v-678be5ba {
+  margin: 18rpx 0 27rpx 0;
+  font-size: 28rpx;
+  color: #fff;
+}
+.smallVideo .msgInfo .msg3.data-v-678be5ba {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.smallVideo .msgInfo .msg3 .card-actions.data-v-678be5ba {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 45px;
+  border-top: 1px #eee solid;
+}
+.smallVideo .msgInfo .msg3 .card-actions-item.data-v-678be5ba {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 24rpx;
+}
+.smallVideo .msgInfo .msg3 .card-actions-item-text.data-v-678be5ba {
+  font-size: 12px;
+  color: #fff;
+  margin-left: 5px;
+}
+.smallVideo .video.data-v-678be5ba {
+  width: 100%;
+  height: 100%;
+  background-color: #808080;
+}

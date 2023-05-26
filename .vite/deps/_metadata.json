@@ -1,0 +1,29 @@
+{
+  "hash": "2a1daa69",
+  "browserHash": "eb6986ed",
+  "optimized": {
+    "pinia-plugin-unistorage": {
+      "src": "../../node_modules/pinia-plugin-unistorage/dist/index.mjs",
+      "file": "pinia-plugin-unistorage.js",
+      "fileHash": "c16798d8",
+      "needsInterop": false
+    },
+    "@vue/reactivity": {
+      "src": "../../node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js",
+      "file": "@vue_reactivity.js",
+      "fileHash": "0f65701f",
+      "needsInterop": false
+    },
+    "vue-jsonp": {
+      "src": "../../node_modules/vue-jsonp/dist/index.esm.js",
+      "file": "vue-jsonp.js",
+      "fileHash": "50a3d5fc",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ZHFIC5LR": {
+      "file": "chunk-ZHFIC5LR.js"
+    }
+  }
+}

@@ -10,199 +10,116 @@
 			}
 		},
 		{
-			"path" : "pages/Home/index",
-			"style" :                                                                                    
-			{
-				 "navigationBarTitleText": "",
-				 "enablePullDownRefresh": true
-			}
+            "path" : "pages/tabBar/Home/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true
+            }
             
-	  },{
-			"path" : "pages/SendVideo/index",
-			"style" :                                                                                    
-			{
-				 "navigationBarTitleText": "",
-				 "enablePullDownRefresh": false,
-			"app-plus": {
-				"titleNView": false
-			}
-			}
-			
-	  },
-	  {
-			"path" : "pages/Money/index",
-			"style" :                                                                                    
-			{
-				 "navigationBarTitleText": "",
-				 "enablePullDownRefresh": false,
-			"navigationStyle": "custom"
-			}
-			
-	  },{
-			"path" : "pages/Game/index",
-			"style" :                                                                                    
-			{
-				 "navigationBarTitleText": "消息",
-				 "enablePullDownRefresh": false,
-			"navigationBarBackgroundColor":"#fff"
-			}
-			
-	  },{
-			"path" : "pages/My/index",
-			"style" :                                                                                    
-			{
-				 "navigationBarTitleText": "",
-				 "enablePullDownRefresh": false
-			}
-			
-	  },{
-			"path" : "pages/Home/newsItem",
-			"style" :                                                                                    
-			{
-				 "navigationBarTitleText": "",
-				 "enablePullDownRefresh": false
-			}
-			
-	  }
- ],
-	 "subPackages": [
-	 	{
-			"root":"mainGame",
-			"name":"消息列表分包",
-			"pages": [
-				//粉丝列表
-				{
-					"path": "pages/fans/fans",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
+        }
+        ,{
+            "path" : "pages/tabBar/Video/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": true,
+				"app-plus": {
+					"titleNView": false
 				}
-			]
+            }
+            
+        }
+        ,{
+            "path" : "pages/tabBar/Money/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+            }
+            
+        },{
+            "path" : "pages/tabBar/Game/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "消息",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#fff"
+            }
+            
+        },{
+            "path" : "pages/tabBar/My/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "components/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false,
+				"navigationStyle":"custom"
+            }
+            
+        }
+        ,{
+            "path" : "components/guide",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+			"path": "pages/tabBar/Home/detail/detail",
+			"style": {
+				"navigationBarTitleText": "详情页面"
+				
+			}
 		},
 		{
-			"root":"mainHome",
-			"name":"首页列表分包",
-			"pages": [
-				//首页信息模块封装
-				{
-					"path": "pages/detail",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				},
-				// //首页信息模块封装
-				// {
-				// 	"path": "pages/newsItem",
-				// 	"style": {
-				// 		"navigationBarTitleText": "",
-				// 		 "enablePullDownRefresh": false,
-				// 		"navigationBarBackgroundColor":"#fff"
-				// 	}
-				// },
-				{
-					"path": "pages/video",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				}
-			]
+			"path": "pages/tabBar/Game/fans/fans",
+			"style": {
+				"navigationBarTitleText": "粉丝",
+				"navigationBarBackgroundColor":"#fff"
+				
+			}
+		},
+		// {
+		// 	"path": "pages/tabBar/Money/sigin/sigin",
+		// 	"style": {
+		// 		"navigationBarTitleText": "签到详情",
+		// 		"navigationStyle":"custom",
+		// 		"navigationBarTextStyle": "white"
+		// 	}
+		// },
+		{
+			"path": "pages/tabBar/Money/sigin/sigin",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationStyle":"custom"
+				
+			}
 		},
 		{
-			"root":"mainMoney",
-			"name":"登录赚金币分包",
-			"pages": [
-				//签到模块
-				{
-					"path": "pages/sigin",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				}
-			]
-		},
-		{
-			"root":"mainVideo",
-			"name":"小视频封装",
-			"pages": [
-				//类似抖音
-				{
-					"path": "pages/index.dy",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				},
-				//小视频
-				{
-					"path": "pages/index",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				},
-				//小视频
-				{
-					"path": "smallVideo/smallVideo",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				}
-			]
-		},
-		{
-			"root":"components",
-			"name":"组件封装",
-			"pages": [
-				//类似抖音
-				{
-					"path": "guide",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				},
-				//小视频
-				{
-					"path": "login",
-					"style": {
-						"navigationBarTitleText": "",
-						"enablePullDownRefresh": false,
-						"navigationStyle":"custom"
-					}
-				},
-				//小视频
-				{
-					"path": "popup",
-					"style": {
-						"navigationBarTitleText": "",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				},
-				{
-					"path": "upload",
-					"style": {
-						"navigationBarTitleText": "发布视频",
-						 "enablePullDownRefresh": false,
-						"navigationBarBackgroundColor":"#fff"
-					}
-				}
-			]
+			"path": "pages/tabBar/Video/smallVideo/smallVideo",
+			"style": {
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "爆米花视频",
+				"navigationStyle":"custom"
+				
+			}
 		}
-	 ],
+		
+		
+		
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
@@ -220,41 +137,34 @@
 		"backgroundColor": "#ffffff",
 		"midButton":{
 			"height":"34px",
-			"iconPath": "static/tabBar/SendVideoSelect.png",
-			"selectedIconPath": "static/tabBar/SendVideoSelect.png"
+			"iconPath": "static/tabBar/moneySelect.png",
+			"selectedIconPath": "static/tabBar/moneySelect.png"
 		},
 		"list": [
 			{
-				"pagePath": "pages/Home/index",
+				"pagePath": "pages/tabBar/Home/index",
 				"iconPath": "static/tabBar/home.png",
 				"selectedIconPath": "static/tabBar/homeSelect.png"
 				// "text": "主页"
 			},
-			// {
-			// 	"pagePath": "mainVideo/index",
-			// 	"iconPath": "static/tabBar/video.png",
-			// 	"selectedIconPath": "static/tabBar/videoSelect.png"
-			// 	// "text": "小视频"
-			// },
 			{
-				"pagePath": "pages/Money/index",
+				"pagePath": "pages/tabBar/Video/index",
+				"iconPath": "static/tabBar/video.png",
+				"selectedIconPath": "static/tabBar/videoSelect.png"
+				// "text": "小视频"
+			},{
+				"pagePath": "pages/tabBar/Money/index",
 				"iconPath": "static/tabBar/money.png",
 				"selectedIconPath": "static/tabBar/moneySelect.png"
 				// "text": "小视频"
-			},
-			{
-				"pagePath": "pages/SendVideo/index",
-				"iconPath": "static/tabBar/SendVideo.png",
-				"selectedIconPath": "static/tabBar/SendVideoSelect.png"
-				// "text": "发视频"
 			}
 			,{
-				"pagePath": "pages/Game/index",
+				"pagePath": "pages/tabBar/Game/index",
 				"iconPath": "static/tabBar/game.png",
 				"selectedIconPath": "static/tabBar/gameSelect.png"
 				// "text": "玩游戏"
 			}, {
-				"pagePath": "pages/My/index",
+				"pagePath": "pages/tabBar/My/index",
 				"iconPath": "static/tabBar/my.png",
 				"selectedIconPath": "static/tabBar/mySelect.png"
 				// "text": "我的"
@@ -269,4 +179,3 @@
 				}]
 	}
 }
-

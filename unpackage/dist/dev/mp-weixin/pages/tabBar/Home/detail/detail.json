@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "详情页面",
+  "usingComponents": {
+    "lazy-load": "../../../../uni_modules/muqian-lazyLoad/components/muqian-lazyLoad/muqian-lazyLoad",
+    "video-item": "../../../../components/video",
+    "uni-load-more": "../../../../uni_modules/uni-load-more/components/uni-load-more/uni-load-more"
+  }
+}

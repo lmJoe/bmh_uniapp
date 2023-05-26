@@ -1,109 +1,56 @@
 {
-  "pages": [
-    "pages/prompt/promptPage",
-    "pages/Home/index",
-    "pages/SendVideo/index",
-    "pages/Money/index",
-    "pages/Game/index",
-    "pages/My/index",
-    "pages/Home/newsItem"
-  ],
-  "subPackages": [
-    {
-      "root": "mainGame",
-      "pages": [
-        "pages/fans/fans"
-      ],
-      "name": "消息列表分包"
+    "pages": [
+        "pages/prompt/promptPage",
+        "pages/tabBar/Home/index",
+        "pages/tabBar/Video/index",
+        "pages/tabBar/Money/index",
+        "pages/tabBar/Game/index",
+        "pages/tabBar/My/index",
+        "components/login",
+        "components/guide",
+        "pages/tabBar/Home/detail/detail",
+        "pages/tabBar/Game/fans/fans",
+        "pages/tabBar/Money/sigin/sigin"
+    ],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
     },
-    {
-      "root": "mainHome",
-      "pages": [
-        "pages/detail",
-        "pages/video"
-      ],
-      "name": "首页列表分包"
+    "tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#FF4B45",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/tabBar/Home/index",
+                "iconPath": "static/tabBar/home.png",
+                "selectedIconPath": "static/tabBar/homeSelect.png"
+            },
+            {
+                "pagePath": "pages/tabBar/Video/index",
+                "iconPath": "static/tabBar/video.png",
+                "selectedIconPath": "static/tabBar/videoSelect.png"
+            },
+            {
+                "pagePath": "pages/tabBar/Money/index",
+                "iconPath": "static/tabBar/money.png",
+                "selectedIconPath": "static/tabBar/moneySelect.png"
+            },
+            {
+                "pagePath": "pages/tabBar/Game/index",
+                "iconPath": "static/tabBar/game.png",
+                "selectedIconPath": "static/tabBar/gameSelect.png"
+            },
+            {
+                "pagePath": "pages/tabBar/My/index",
+                "iconPath": "static/tabBar/my.png",
+                "selectedIconPath": "static/tabBar/mySelect.png"
+            }
+        ]
     },
-    {
-      "root": "mainMoney",
-      "pages": [
-        "pages/sigin"
-      ],
-      "name": "登录赚金币分包"
-    },
-    {
-      "root": "mainVideo",
-      "pages": [
-        "pages/index.dy",
-        "pages/index",
-        "smallVideo/smallVideo"
-      ],
-      "name": "小视频封装"
-    },
-    {
-      "root": "components",
-      "pages": [
-        "guide",
-        "login",
-        "popup",
-        "upload"
-      ],
-      "name": "组件封装"
-    }
-  ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
-  },
-  "tabBar": {
-    "color": "#7A7E83",
-    "fontSize": "9.9px",
-    "selectedColor": "#FF4B45",
-    "borderStyle": "black",
-    "backgroundColor": "#ffffff",
-    "midButton": {
-      "height": "34px",
-      "iconPath": "static/tabBar/SendVideoSelect.png",
-      "selectedIconPath": "static/tabBar/SendVideoSelect.png"
-    },
-    "list": [
-      {
-        "pagePath": "pages/Home/index",
-        "iconPath": "static/tabBar/home.png",
-        "selectedIconPath": "static/tabBar/homeSelect.png"
-      },
-      {
-        "pagePath": "pages/Money/index",
-        "iconPath": "static/tabBar/money.png",
-        "selectedIconPath": "static/tabBar/moneySelect.png"
-      },
-      {
-        "pagePath": "pages/SendVideo/index",
-        "iconPath": "static/tabBar/SendVideo.png",
-        "selectedIconPath": "static/tabBar/SendVideoSelect.png"
-      },
-      {
-        "pagePath": "pages/Game/index",
-        "iconPath": "static/tabBar/game.png",
-        "selectedIconPath": "static/tabBar/gameSelect.png"
-      },
-      {
-        "pagePath": "pages/My/index",
-        "iconPath": "static/tabBar/my.png",
-        "selectedIconPath": "static/tabBar/mySelect.png"
-      }
-    ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "使用定位功能"
-    }
-  },
-  "requiredPrivateInfos": [
-    "getLocation"
-  ],
-  "lazyCodeLoading": "requiredComponents",
-  "usingComponents": {}
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json"
 }

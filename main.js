@@ -2,12 +2,10 @@
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
-import store from '@/store/store.js'
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-    ...App,
-	store
+    ...App
 })
 app.$mount()
 // #endif
@@ -16,12 +14,22 @@ app.$mount()
 import { createSSRApp } from 'vue'
 import App from './App.vue'
 import * as Pinia from 'pinia';
+import { createUnistorage } from 'pinia-plugin-unistorage';
+
 export function createApp() {
   const app = createSSRApp(App)
-  app.use(Pinia.createPinia());
+  const store = Pinia.createPinia()
+  store.use(createUnistorage())
+  app.use(store)
+  
   return {
     app,
-    Pinia
+	Pinia,
   }
 }
+// #endif
+
+
+// #ifdef APP-PLUS
+
 // #endif
